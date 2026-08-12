@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AGOMANI — Sharodiyo Bangla</title>
+<style>
+:root{--gold:#f4bd54;--red:#e83a2d;--glass:rgba(12,7,5,.64);--line:rgba(255,211,140,.18)}
+*{box-sizing:border-box}body{margin:0;color:#fff6e8;background:#080504;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
+body:before{content:"";position:fixed;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.84),rgba(0,0,0,.25),rgba(0,0,0,.45)),url("durga-bg.png") center/cover no-repeat;z-index:-5}
+body:after{content:"";position:fixed;inset:-20%;background:radial-gradient(circle,rgba(255,184,76,.13) 0 2px,transparent 3px) 0 0/90px 90px;animation:drift 18s linear infinite;z-index:-3}
+@keyframes drift{to{transform:translate(90px,90px)}}@keyframes fall{to{transform:translate(80px,110vh) rotate(500deg)}}
+.petals i{position:fixed;top:-20px;width:12px;height:7px;background:#d94739;border-radius:100% 0;opacity:.7;z-index:3;animation:fall 13s linear infinite;pointer-events:none}.petals i:nth-child(1){left:12%}.petals i:nth-child(2){left:38%;animation-delay:3s;animation-duration:16s}.petals i:nth-child(3){left:67%;animation-delay:1s;animation-duration:13s}.petals i:nth-child(4){left:86%;animation-delay:5s;animation-duration:18s}
+.side{position:fixed;inset:0 auto 0 0;width:240px;padding:26px 18px;background:#050302b3;backdrop-filter:blur(14px);border-right:1px solid var(--line);z-index:5}.logo{font:35px Georgia,serif;letter-spacing:3px;color:#ffe4a9}.sub{font-size:11px;letter-spacing:2px;color:var(--gold);margin:5px 0 35px}.nav button{width:100%;padding:13px;margin:3px 0;background:transparent;border:1px solid transparent;color:#eee;text-align:left;border-radius:14px;font-size:15px;cursor:pointer}.nav button.active,.nav button:hover{background:#9720186b;border-color:#f4bd5440}.social{position:absolute;bottom:24px;color:#cbbca9}
+main{margin-left:240px;padding:28px 30px 155px;max-width:1200px}.top{display:flex;justify-content:flex-end}.date{padding:10px 15px;border:1px solid var(--line);border-radius:14px;background:#0006;font-size:13px}.hero{text-align:center;max-width:850px;margin:5vh auto 25px}.trident{font-size:38px;color:var(--gold)}h1{font:clamp(58px,10vw,110px)/.9 Georgia,serif;margin:10px 0;color:#fff8ed;text-shadow:0 8px 35px #000;letter-spacing:4px}.bengali{font-size:23px;color:var(--gold)}.hero p{color:#eadfce}.live{border:1px solid #f45b48;background:linear-gradient(135deg,#b72219,#ed4c35);color:#fff;border-radius:999px;padding:14px 28px;font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 0 35px #e531234d}
+.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.card{min-height:170px;border:1px solid var(--line);border-radius:20px;padding:18px;background:var(--glass);backdrop-filter:blur(12px);transition:.25s}.card:hover{transform:translateY(-5px);border-color:#f4bd5480}.emoji{font-size:34px}.card h3{margin:15px 0 4px}.card p{margin:0;color:#cbbca9;font-size:13px}.card button,.song button{margin-top:15px;border:1px solid var(--gold);background:transparent;color:#fff;border-radius:50%;width:36px;height:36px;cursor:pointer}
+.section{margin-top:34px}.section h2{font:26px Georgia,serif}.list{border:1px solid var(--line);background:#07040399;border-radius:20px;overflow:hidden}.song{display:grid;grid-template-columns:45px 1fr auto;align-items:center;gap:12px;padding:14px 17px;border-bottom:1px solid #ffffff12}.song:last-child{border:0}.num{color:var(--gold)}.song small{display:block;color:#cbbca9}.song button{margin:0;border-radius:10px;width:auto;padding:8px 11px}
+.yt{margin-top:28px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#050302b8}.ythead{padding:13px 17px;display:flex;justify-content:space-between;gap:10px}.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
+.player{position:fixed;left:240px;right:0;bottom:0;padding:12px 18px;background:#080403eb;backdrop-filter:blur(18px);border-top:1px solid var(--line);z-index:10}.pinner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:15px}.now b{display:block}.now small{color:#cbbca9}.controls{display:flex;gap:9px}.controls button{border:1px solid var(--line);background:#25130e;color:#fff;border-radius:50%;width:38px;height:38px;cursor:pointer}.controls .main{width:48px;height:48px;background:var(--red)}.bar{display:flex;justify-content:flex-end;gap:8px}.bar input{width:130px;accent-color:var(--gold)}
+@media(max-width:850px){.side{position:static;width:auto;padding:15px;border-right:0;border-bottom:1px solid var(--line)}.logo{font-size:28px}.sub{margin:3px 0 12px}.nav{display:flex;overflow:auto;gap:6px}.nav button{white-space:nowrap;width:auto;margin:0;padding:9px 12px}main{margin:0;padding:15px 14px 135px}.cards{grid-template-columns:repeat(2,1fr)}.card:last-child{grid-column:1/-1}.player{left:0}.pinner{grid-template-columns:1fr auto}.bar{display:none}.social,.top{display:none}}
+</style>
+</head>
+<body>
+<div class="petals"><i></i><i></i><i></i><i></i></div>
+<aside class="side"><div class="logo">AGOMANI</div><div class="sub">SHARODIYO BANGLA</div><div class="nav"><button class="active">⌂ Home</button><button>◉ Live Radio</button><button>☷ Playlists</button><button>♫ Songs</button><button>♡ Favourites</button><button>◷ Recently Played</button><button>ⓘ About AGOMANI</button></div><div class="social">Follow AGOMANI<br><br>f &nbsp; ◎ &nbsp; ▶</div></aside>
+<main>
+<div class="top"><div class="date" id="clock"></div></div>
+<section class="hero"><div class="trident">🔱</div><h1>AGOMANI</h1><div class="bengali">॥ মা আসছেন... ॥</div><p>A musical celebration of Sharodiyo — Maa, Dhak & Devotion</p><button class="live" onclick="select(0)">▶ LISTEN LIVE</button></section>
+<section class="cards">
+<div class="card"><div class="emoji">🌺</div><h3>AGOMONI</h3><p>আগমনী গান</p><button onclick="select(0)">▶</button></div>
+<div class="card"><div class="emoji">🥁</div><h3>DHAKER TAAL</h3><p>ঢাকের তালে</p><button onclick="select(1)">▶</button></div>
+<div class="card"><div class="emoji">🎶</div><h3>PUJOR GAAN</h3><p>পুজোর বাংলা গান</p><button onclick="select(2)">▶</button></div>
+<div class="card"><div class="emoji">🌙</div><h3>PUJO RAAT</h3><p>রাতের সুর</p><button onclick="select(0)">▶</button></div>
+<div class="card"><div class="emoji">🪔</div><h3>BISORJON</h3><p>বিদায়ের সুর</p><button onclick="select(1)">▶</button></div>
+</section>
+<section class="section"><h2>AGOMANI Playlist</h2><div class="list" id="songs"></div></section>
+<section class="yt"><div class="ythead"><b id="ytTitle">Select a song</b><span>Official YouTube player</span></div><div id="player"></div></section>
+</main>
+<div class="player"><div class="pinner"><div class="now"><b id="now">AGOMANI Radio</b><small id="artist">Select a song</small></div><div class="controls"><button onclick="prev()">⏮</button><button class="main" onclick="select(current<0?0:current)">▶</button><button onclick="next()">⏭</button></div><div class="bar">🔊 <input id="vol" type="range" min="0" max="100" value="80"></div></div></div>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+const songs=[
+["Bajlo Tomar Alor Benu","Debolina Nandy • Bishakha Official","FRJJSEG5ljw"],
+["Ashilo Thakur","Debayan Das • Official Artist Channel","Xc9-W2gK9rE"],
+["Sharodo Gan","Dola Banerjee • T-Series Bangla","-fSQl9H-SmU"]
+];
+let current=-1, yt=null;
+const list=document.getElementById("songs");
+list.innerHTML=songs.map((s,n)=>`<div class="song"><span class="num">${String(n+1).padStart(2,"0")}</span><div><b>${s[0]}</b><small>${s[1]}</small></div><button onclick="select(${n})">▶</button></div>`).join("");
+function onYouTubeIframeAPIReady(){yt=new YT.Player("player",{height:"100%",width:"100%",videoId:songs[0][2],playerVars:{rel:0,modestbranding:1},events:{onReady:e=>e.target.setVolume(80)}})}
+function select(n){current=n;document.getElementById("now").textContent=songs[n][0];document.getElementById("artist").textContent=songs[n][1];document.getElementById("ytTitle").textContent=songs[n][0];if(yt&&yt.loadVideoById){yt.loadVideoById(songs[n][2]);}}
+function prev(){if(current>0)select(current-1)} function next(){if(current<songs.length-1)select(current+1)}
+document.getElementById("vol").oninput=e=>{if(yt)yt.setVolume(+e.target.value)}
+function clock(){document.getElementById("clock").textContent=new Date().toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"})}clock();setInterval(clock,1000);
+</script>
+</body></html>
