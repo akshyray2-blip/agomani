@@ -3,54 +3,1049 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>AGOMANI — Sharodiyo Bangla</title>
+<title>AGOMANI — Sharodiyo Bangla Music</title>
+
 <style>
-:root{--gold:#f4bd54;--red:#e83a2d;--glass:rgba(12,7,5,.64);--line:rgba(255,211,140,.18)}
-*{box-sizing:border-box}body{margin:0;color:#fff6e8;background:#080504;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
-body:before{content:"";position:fixed;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.84),rgba(0,0,0,.25),rgba(0,0,0,.45)),url("durga-bg.png") center/cover no-repeat;z-index:-5}
-body:after{content:"";position:fixed;inset:-20%;background:radial-gradient(circle,rgba(255,184,76,.13) 0 2px,transparent 3px) 0 0/90px 90px;animation:drift 18s linear infinite;z-index:-3}
-@keyframes drift{to{transform:translate(90px,90px)}}@keyframes fall{to{transform:translate(80px,110vh) rotate(500deg)}}
-.petals i{position:fixed;top:-20px;width:12px;height:7px;background:#d94739;border-radius:100% 0;opacity:.7;z-index:3;animation:fall 13s linear infinite;pointer-events:none}.petals i:nth-child(1){left:12%}.petals i:nth-child(2){left:38%;animation-delay:3s;animation-duration:16s}.petals i:nth-child(3){left:67%;animation-delay:1s;animation-duration:13s}.petals i:nth-child(4){left:86%;animation-delay:5s;animation-duration:18s}
-.side{position:fixed;inset:0 auto 0 0;width:240px;padding:26px 18px;background:#050302b3;backdrop-filter:blur(14px);border-right:1px solid var(--line);z-index:5}.logo{font:35px Georgia,serif;letter-spacing:3px;color:#ffe4a9}.sub{font-size:11px;letter-spacing:2px;color:var(--gold);margin:5px 0 35px}.nav button{width:100%;padding:13px;margin:3px 0;background:transparent;border:1px solid transparent;color:#eee;text-align:left;border-radius:14px;font-size:15px;cursor:pointer}.nav button.active,.nav button:hover{background:#9720186b;border-color:#f4bd5440}.social{position:absolute;bottom:24px;color:#cbbca9}
-main{margin-left:240px;padding:28px 30px 155px;max-width:1200px}.top{display:flex;justify-content:flex-end}.date{padding:10px 15px;border:1px solid var(--line);border-radius:14px;background:#0006;font-size:13px}.hero{text-align:center;max-width:850px;margin:5vh auto 25px}.trident{font-size:38px;color:var(--gold)}h1{font:clamp(58px,10vw,110px)/.9 Georgia,serif;margin:10px 0;color:#fff8ed;text-shadow:0 8px 35px #000;letter-spacing:4px}.bengali{font-size:23px;color:var(--gold)}.hero p{color:#eadfce}.live{border:1px solid #f45b48;background:linear-gradient(135deg,#b72219,#ed4c35);color:#fff;border-radius:999px;padding:14px 28px;font-size:17px;font-weight:800;cursor:pointer;box-shadow:0 0 35px #e531234d}
-.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.card{min-height:170px;border:1px solid var(--line);border-radius:20px;padding:18px;background:var(--glass);backdrop-filter:blur(12px);transition:.25s}.card:hover{transform:translateY(-5px);border-color:#f4bd5480}.emoji{font-size:34px}.card h3{margin:15px 0 4px}.card p{margin:0;color:#cbbca9;font-size:13px}.card button,.song button{margin-top:15px;border:1px solid var(--gold);background:transparent;color:#fff;border-radius:50%;width:36px;height:36px;cursor:pointer}
-.section{margin-top:34px}.section h2{font:26px Georgia,serif}.list{border:1px solid var(--line);background:#07040399;border-radius:20px;overflow:hidden}.song{display:grid;grid-template-columns:45px 1fr auto;align-items:center;gap:12px;padding:14px 17px;border-bottom:1px solid #ffffff12}.song:last-child{border:0}.num{color:var(--gold)}.song small{display:block;color:#cbbca9}.song button{margin:0;border-radius:10px;width:auto;padding:8px 11px}
-.yt{margin-top:28px;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#050302b8}.ythead{padding:13px 17px;display:flex;justify-content:space-between;gap:10px}.yt iframe{display:block;width:100%;aspect-ratio:16/9;border:0}
-.player{position:fixed;left:240px;right:0;bottom:0;padding:12px 18px;background:#080403eb;backdrop-filter:blur(18px);border-top:1px solid var(--line);z-index:10}.pinner{max-width:1100px;margin:auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:15px}.now b{display:block}.now small{color:#cbbca9}.controls{display:flex;gap:9px}.controls button{border:1px solid var(--line);background:#25130e;color:#fff;border-radius:50%;width:38px;height:38px;cursor:pointer}.controls .main{width:48px;height:48px;background:var(--red)}.bar{display:flex;justify-content:flex-end;gap:8px}.bar input{width:130px;accent-color:var(--gold)}
-@media(max-width:850px){.side{position:static;width:auto;padding:15px;border-right:0;border-bottom:1px solid var(--line)}.logo{font-size:28px}.sub{margin:3px 0 12px}.nav{display:flex;overflow:auto;gap:6px}.nav button{white-space:nowrap;width:auto;margin:0;padding:9px 12px}main{margin:0;padding:15px 14px 135px}.cards{grid-template-columns:repeat(2,1fr)}.card:last-child{grid-column:1/-1}.player{left:0}.pinner{grid-template-columns:1fr auto}.bar{display:none}.social,.top{display:none}}
+:root{
+  --gold:#f4bd54;
+  --red:#e83a2d;
+  --bg:#080504;
+  --card:#120b08;
+  --line:rgba(255,211,140,.18);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  color:#fff;
+  background:#080504;
+  font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;
+}
+
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.25)),
+  url("durga-bg.png") center/cover fixed;
+  z-index:-2;
+}
+
+body:after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.35);
+  z-index:-1;
+}
+
+a{color:inherit;text-decoration:none}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:rgba(12,5,2,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+
+nav{
+  display:flex;
+  gap:28px;
+  overflow:auto;
+  padding:16px 20px;
+  white-space:nowrap;
+}
+
+nav button{
+  border:0;
+  background:none;
+  color:#fff;
+  font-size:18px;
+}
+
+nav button.active{
+  color:var(--gold);
+}
+
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+.hero{
+  min-height:330px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero .trishul{
+  font-size:60px;
+}
+
+.hero h1{
+  font-family:Georgia,serif;
+  font-size:62px;
+  letter-spacing:8px;
+  margin:10px 0;
+}
+
+.hero .bengali{
+  color:var(--gold);
+  font-size:25px;
+}
+
+.hero p{
+  font-size:19px;
+  max-width:650px;
+}
+
+.listen{
+  background:var(--red);
+  color:white;
+  border:0;
+  border-radius:50px;
+  padding:18px 35px;
+  font-size:20px;
+  font-weight:800;
+  margin-top:15px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:18px;
+}
+
+.card{
+  background:rgba(18,11,8,.88);
+  border:1px solid var(--line);
+  border-radius:22px;
+  padding:24px;
+  min-height:160px;
+}
+
+.card h3{
+  font-size:25px;
+  margin:10px 0;
+}
+
+.card p{
+  color:#d8c8b4;
+}
+
+.play{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid var(--gold);
+  background:transparent;
+  color:white;
+  font-size:20px;
+}
+
+.section{
+  margin-top:30px;
+}
+
+.section h2{
+  font-family:Georgia,serif;
+  font-size:28px;
+  border-bottom:1px solid var(--line);
+  padding-bottom:12px;
+}
+
+.search{
+  width:100%;
+  padding:15px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:#100907;
+  color:white;
+  font-size:17px;
+  margin-bottom:15px;
+}
+
+.song{
+  display:flex;
+  align-items:center;
+  gap:15px;
+  background:rgba(20,12,8,.9);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:13px;
+  margin:9px 0;
+}
+
+.num{
+  color:var(--gold);
+  min-width:32px;
+  text-align:center;
+}
+
+.songinfo{
+  flex:1;
+}
+
+.songtitle{
+  font-weight:800;
+  font-size:17px;
+}
+
+.meta{
+  color:#c7b9a9;
+  font-size:14px;
+  margin-top:4px;
+}
+
+.song button{
+  border:1px solid var(--gold);
+  background:transparent;
+  color:white;
+  border-radius:50%;
+  width:42px;
+  height:42px;
+}
+
+.player{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  background:rgba(10,5,3,.96);
+  border-top:1px solid var(--line);
+  padding:12px 18px;
+  z-index:20;
+}
+
+.playerbox{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.now{
+  flex:1;
+}
+
+.now b{
+  display:block;
+  color:var(--gold);
+}
+
+.now small{
+  color:#cbbdad;
+}
+
+.prev,.next{
+  border:1px solid var(--gold);
+  background:#180d08;
+  color:white;
+  border-radius:50%;
+  width:42px;
+  height:42px;
+}
+
+iframe{
+  display:none;
+}
+
+@media(max-width:700px){
+  .hero h1{font-size:42px}
+  .cards{grid-template-columns:1fr}
+  nav{gap:20px}
+  .song{padding:10px}
+  .meta{font-size:12px}
+}
 </style>
 </head>
+
 <body>
-<div class="petals"><i></i><i></i><i></i><i></i></div>
-<aside class="side"><div class="logo">AGOMANI</div><div class="sub">SHARODIYO BANGLA</div><div class="nav"><button class="active">⌂ Home</button><button>◉ Live Radio</button><button>☷ Playlists</button><button>♫ Songs</button><button>♡ Favourites</button><button>◷ Recently Played</button><button>ⓘ About AGOMANI</button></div><div class="social">Follow AGOMANI<br><br>f &nbsp; ◎ &nbsp; ▶</div></aside>
+
+<header>
+<nav>
+<button class="active">⌂ Home</button>
+<button onclick="document.getElementById('songs').scrollIntoView()">☷ Playlists</button>
+<button onclick="document.getElementById('songs').scrollIntoView()">♫ Songs</button>
+</nav>
+</header>
+
 <main>
-<div class="top"><div class="date" id="clock"></div></div>
-<section class="hero"><div class="trident">🔱</div><h1>AGOMANI</h1><div class="bengali">॥ মা আসছেন... ॥</div><p>A musical celebration of Sharodiyo — Maa, Dhak & Devotion</p><button class="live" onclick="select(0)">▶ LISTEN LIVE</button></section>
-<section class="cards">
-<div class="card"><div class="emoji">🌺</div><h3>AGOMONI</h3><p>আগমনী গান</p><button onclick="select(0)">▶</button></div>
-<div class="card"><div class="emoji">🥁</div><h3>DHAKER TAAL</h3><p>ঢাকের তালে</p><button onclick="select(1)">▶</button></div>
-<div class="card"><div class="emoji">🎶</div><h3>PUJOR GAAN</h3><p>পুজোর বাংলা গান</p><button onclick="select(2)">▶</button></div>
-<div class="card"><div class="emoji">🌙</div><h3>PUJO RAAT</h3><p>রাতের সুর</p><button onclick="select(0)">▶</button></div>
-<div class="card"><div class="emoji">🪔</div><h3>BISORJON</h3><p>বিদায়ের সুর</p><button onclick="select(1)">▶</button></div>
+
+<section class="hero">
+<div class="trishul">🔱</div>
+<h1>AGOMANI</h1>
+<div class="bengali">॥ মা আসছেন... ॥</div>
+<p>A musical celebration of Sharodiyo — Maa, Dhak & Devotion</p>
+<button class="listen" onclick="playSong(0)">▶ LISTEN LIVE</button>
 </section>
-<section class="section"><h2>AGOMANI Playlist</h2><div class="list" id="songs"></div></section>
-<section class="yt"><div class="ythead"><b id="ytTitle">Select a song</b><span>Official YouTube player</span></div><div id="player"></div></section>
+
+<section class="cards">
+
+<div class="card">
+<div class="emoji">🌺</div>
+<h3>AGOMONI</h3>
+<p>আগমনী গান</p>
+<button class="play" onclick="filterSinger('Agomoni')">▶</button>
+</div>
+
+<div class="card">
+<div class="emoji">🥁</div>
+<h3>DHAKER TAAL</h3>
+<p>ঢাকের তালে</p>
+<button class="play" onclick="filterSinger('Dhak')">▶</button>
+</div>
+
+<div class="card">
+<div class="emoji">🎶</div>
+<h3>PUJOR GAAN</h3>
+<p>পুজোর বাংলা গান</p>
+<button class="play" onclick="filterSinger('Bengali')">▶</button>
+</div>
+
+<div class="card">
+<div class="emoji">🌙</div>
+<h3>PUJO RAAT</h3>
+<p>রাতের সুর</p>
+<button class="play" onclick="filterSinger('Old')">▶</button>
+</div>
+
+</section>
+
+<section class="section" id="songs">
+<h2>🎵 AGOMANI Playlist</h2>
+
+<input
+class="search"
+id="search"
+placeholder="গান / শিল্পী / সিনেমা খুঁজুন..."
+oninput="render()">
+
+<div id="songlist"></div>
+</section>
+
 </main>
-<div class="player"><div class="pinner"><div class="now"><b id="now">AGOMANI Radio</b><small id="artist">Select a song</small></div><div class="controls"><button onclick="prev()">⏮</button><button class="main" onclick="select(current<0?0:current)">▶</button><button onclick="next()">⏭</button></div><div class="bar">🔊 <input id="vol" type="range" min="0" max="100" value="80"></div></div></div>
-<script src="https://www.youtube.com/iframe_api"></script>
+
+<iframe id="youtube"></iframe>
+
+<div class="player">
+<div class="playerbox">
+
+<button class="prev" onclick="prev()">◀</button>
+
+<div class="now">
+<b id="nowTitle">AGOMANI Radio</b>
+<small id="nowArtist">Select a song</small>
+</div>
+
+<button class="next" onclick="next()">▶</button>
+
+</div>
+</div>
+
 <script>
-const songs=[
-["Bajlo Tomar Alor Benu","Debolina Nandy • Bishakha Official","FRJJSEG5ljw"],
-["Ashilo Thakur","Debayan Das • Official Artist Channel","Xc9-W2gK9rE"],
-["Sharodo Gan","Dola Banerjee • T-Series Bangla","-fSQl9H-SmU"]
+
+/*
+========================================================
+AGOMANI PLAYLIST DATABASE
+Official YouTube uploads / official label uploads
+========================================================
+*/
+
+const songs = [
+
+/* Existing AGOMANI songs */
+{
+ title:"Bajlo Tomar Alor Benu",
+ singer:"Debolina Nandy",
+ movie:"Agomoni",
+ url:"https://www.youtube.com/watch?v=FRJUSEG51jw"
+},
+
+{
+ title:"Ashilo Thakur",
+ singer:"Debayan Das",
+ movie:"Agomoni",
+ url:"https://www.youtube.com/watch?v=XC9-W2gK9rE"
+},
+
+{
+ title:"Sharodo Gan",
+ singer:"Dola Banerjee",
+ movie:"Agomoni",
+ url:"https://www.youtube.com/watch?v=fSQl9H-SmU"
+},
+
+/* =====================================================
+   ASHA BHOSLE — OFFICIAL SAREGAMA BENGALI UPLOAD
+   Top 100 Bengali Songs Of Asha Bhosle
+===================================================== */
+
+{
+ title:"Amay Tumi Je Bhalobesechho",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:1
+},
+
+{
+ title:"Akashe Aaj Ranger Khela",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:198
+},
+
+{
+ title:"Nach Mayuri Nach Re",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:549
+},
+
+{
+ title:"Je Gaan Tomay Ami",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:755
+},
+
+{
+ title:"Moner Naam Madhumati",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:934
+},
+
+{
+ title:"Thuilam Re Mon Padmapatay",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:1128
+},
+
+{
+ title:"Moner Manush Khunjte",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:1327
+},
+
+{
+ title:"Mon Niye Ki Morbo Naki Seshe",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:1567
+},
+
+{
+ title:"Ami Khatar Patay Cheyechhilam",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:1761
+},
+
+{
+ title:"Jiban Gaan Gaahi Ki Je",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:1938
+},
+
+{
+ title:"Mohuay Jomechhe Aaj Mou Go",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:2161
+},
+
+{
+ title:"Sandhya Belay Tumi Ami Bose Achi Dujone",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:2368
+},
+
+{
+ title:"Phule Gandha Nei",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:2569
+},
+
+{
+ title:"Chokhe Chokhe Katha Balo",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:2809
+},
+
+{
+ title:"Deep Jwele Oi Tara",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:2928
+},
+
+{
+ title:"Kine De Reshmi",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:3168
+},
+
+{
+ title:"Moyna Balo Tumi",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:3375
+},
+
+{
+ title:"Lakshmiti Dohai Tomar",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:3543
+},
+
+{
+ title:"Kon Se Alor Swapna Niye",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:3747
+},
+
+{
+ title:"Aasbo Aar Ekdin Aaj Jai",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:3945
+},
+
+{
+ title:"Katha Diye Ele Na",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:4161
+},
+
+{
+ title:"Chokhe Naame Brishti",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:4359
+},
+
+{
+ title:"Banshi Shune Ki",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:4567
+},
+
+{
+ title:"Chhande Chhande Gaane Gaane",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:4896
+},
+
+{
+ title:"Ke Jeno Abir",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:5109
+},
+
+{
+ title:"Raat Ekhano Anek Baki",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:5317
+},
+
+{
+ title:"Tumi Jabe Go Chale Jabe Go",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:5477
+},
+
+{
+ title:"Na Deko Na Deko Na Go More",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:5666
+},
+
+{
+ title:"Jete Dao Amay Dekona",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:5831
+},
+
+{
+ title:"Angur Angur Chokh",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:6028
+},
+
+{
+ title:"Besh Korechhi Prem",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:6210
+},
+
+{
+ title:"Aaj Dujane Mando Hole",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:6334
+},
+
+{
+ title:"Raat Je Madhumati",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:7147
+},
+
+{
+ title:"Ei Raate Ektukahni Kachhe",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:7267
+},
+
+{
+ title:"Nach Achhe Gaan Achhe",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:7500
+},
+
+{
+ title:"Ga Chham Chham Ki Hoy Ki Hoy",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:7740
+},
+
+{
+ title:"Moner Manush Phirlo Ghare",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:8072
+},
+
+{
+ title:"Aay Chole Aay",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:8636
+},
+
+{
+ title:"Mon Metechhe Mon Mayurir",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:8840
+},
+
+{
+ title:"Aaro Dure Chalo Jai",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:9007
+},
+
+{
+ title:"Amar Din Kate Na",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:9207
+},
+
+{
+ title:"E Mon Amar Hariye Jay",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:9432
+},
+
+{
+ title:"Sagar Dake Aay Aay",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:9615
+},
+
+{
+ title:"Jadi Kane Kane Kichhu Bale",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:10124
+},
+
+{
+ title:"Pora Banshi Shunle E Mon",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:10509
+},
+
+{
+ title:"Emon Madhur Sandhyay",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:10698
+},
+
+{
+ title:"Tolo Chhinnabeena",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:11358
+},
+
+{
+ title:"Aaj Gun Gun Gun Kunje Amar",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:12547
+},
+
+{
+ title:"Ki Je Bhabi Elomelo",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:12869
+},
+
+{
+ title:"Tomari Chalar Pathe",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:13198
+},
+
+{
+ title:"Jani Na Aaj Je Apon",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:13439
+},
+
+{
+ title:"Tumi Kato Je Dure",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:14227
+},
+
+{
+ title:"Keno Dako Isharay",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:14478
+},
+
+{
+ title:"Ami Apon Koriya Chahini",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:15162
+},
+
+{
+ title:"Bou Katha Kao",
+ singer:"Asha Bhosle",
+ movie:"Various Bengali Films",
+ url:"https://www.youtube.com/watch?v=jfxbMhNvJ98",
+ start:15448
+},
+
+/* =====================================================
+   KUMAR SANU — OFFICIAL SAREGAMA BENGALI UPLOAD
+===================================================== */
+
+{
+ title:"Tomar Sure Sur Bendhechhi",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:0
+},
+
+{
+ title:"Kato Dur Chale Elam",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:245
+},
+
+{
+ title:"Keno Tumi Amake Je Eto Bhalobaso",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:648
+},
+
+{
+ title:"Tumi Janona Naki Bojhona",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:978
+},
+
+{
+ title:"Tumi Achho Eto Kachhe Tai",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:1250
+},
+
+{
+ title:"Tumi Elena Keno Elena",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:1559
+},
+
+{
+ title:"Jibone Amar Aro Achhe Gaan",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:1867
+},
+
+{
+ title:"Priyotama Mone Rekho",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:2238
+},
+
+{
+ title:"Tomar Hasite Bodhu",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:2600
+},
+
+{
+ title:"O Chokhe Amar",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:2913
+},
+
+{
+ title:"Eto Noi Noi",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:3218
+},
+
+{
+ title:"Aar Katokal Ami Saibo",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:3530
+},
+
+{
+ title:"Tomra Asbe To",
+ singer:"Kumar Sanu",
+ movie:"Bengali Album",
+ url:"https://www.youtube.com/watch?v=viTFl0nCDMw",
+ start:3879
+}
+
 ];
-let current=-1, yt=null;
-const list=document.getElementById("songs");
-list.innerHTML=songs.map((s,n)=>`<div class="song"><span class="num">${String(n+1).padStart(2,"0")}</span><div><b>${s[0]}</b><small>${s[1]}</small></div><button onclick="select(${n})">▶</button></div>`).join("");
-function onYouTubeIframeAPIReady(){yt=new YT.Player("player",{height:"100%",width:"100%",videoId:songs[0][2],playerVars:{rel:0,modestbranding:1},events:{onReady:e=>e.target.setVolume(80)}})}
-function select(n){current=n;document.getElementById("now").textContent=songs[n][0];document.getElementById("artist").textContent=songs[n][1];document.getElementById("ytTitle").textContent=songs[n][0];if(yt&&yt.loadVideoById){yt.loadVideoById(songs[n][2]);}}
-function prev(){if(current>0)select(current-1)} function next(){if(current<songs.length-1)select(current+1)}
-document.getElementById("vol").oninput=e=>{if(yt)yt.setVolume(+e.target.value)}
-function clock(){document.getElementById("clock").textContent=new Date().toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"})}clock();setInterval(clock,1000);
+
+let current=0;
+
+function videoId(url){
+  try{
+    return new URL(url).searchParams.get("v");
+  }catch(e){
+    return "";
+  }
+}
+
+function playSong(i){
+  if(!songs[i]) return;
+
+  current=i;
+
+  const s=songs[i];
+
+  document.getElementById("nowTitle").textContent=s.title;
+  document.getElementById("nowArtist").textContent=
+    s.singer+" • "+s.movie;
+
+  const id=videoId(s.url);
+
+  if(id){
+    const start=s.start||0;
+
+    document.getElementById("youtube").src=
+      "https://www.youtube.com/embed/"+id+
+      "?autoplay=1&start="+start+"&rel=0";
+  }
+
+  window.scrollTo({
+    top:document.body.scrollHeight,
+    behavior:"smooth"
+  });
+}
+
+function render(){
+
+  const q=document.getElementById("search")
+    .value
+    .toLowerCase()
+    .trim();
+
+  const list=document.getElementById("songlist");
+
+  const filtered=songs.filter(s=>
+    s.title.toLowerCase().includes(q) ||
+    s.singer.toLowerCase().includes(q) ||
+    s.movie.toLowerCase().includes(q)
+  );
+
+  list.innerHTML=filtered.map((s,index)=>{
+
+    const realIndex=songs.indexOf(s);
+
+    return `
+    <div class="song">
+
+      <div class="num">
+        ${String(realIndex+1).padStart(2,"0")}
+      </div>
+
+      <div class="songinfo">
+
+        <div class="songtitle">
+          ${s.title}
+        </div>
+
+        <div class="meta">
+          🎤 ${s.singer} &nbsp; • &nbsp;
+          🎬 ${s.movie}
+        </div>
+
+      </div>
+
+      <button onclick="playSong(${realIndex})">
+        ▶
+      </button>
+
+    </div>
+    `;
+
+  }).join("");
+}
+
+function next(){
+  current=(current+1)%songs.length;
+  playSong(current);
+}
+
+function prev(){
+  current=(current-1+songs.length)%songs.length;
+  playSong(current);
+}
+
+function filterSinger(text){
+  document.getElementById("search").value=text;
+  render();
+  document.getElementById("songs").scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+render();
+
 </script>
-</body></html>
+
+</body>
+</html>
