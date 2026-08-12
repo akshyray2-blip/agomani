@@ -545,224 +545,207 @@ main{
 
 const songs = [
 
-  [
-    "Bajlo Tomar Alor Benu",
-    "Debolina Nandy • Bishakha Official",
-    "FRJJSEG51jw"
-  ],
+  [<script src="https://www.youtube.com/iframe_api"></script>
 
-  [
-    "Ashilo Thakur",
-    "Debayan Das • Official Artist Channel",
-    "Xc9-W2gK9rE"
-  ],
-
-  [
-    "Sharodo Gan",
-    "Dola Banerjee • T-Series Bangla",
-    "fSQl9H-SmU"
-  ]
-
+<script>
+const songs = [
+  {
+    title: "Bajlo Amar Alor Benu",
+    singer: "Debolina Nandy",
+    movie: "Agomoni",
+    youtube: "https://www.youtube.com/watch?v=FRJUSEG51jw"
+  },
+  {
+    title: "Ashilo Thakur",
+    singer: "Debayan Das",
+    movie: "Agomoni",
+    youtube: "https://www.youtube.com/watch?v=Xc9-w2Gk9rE"
+  },
+  {
+    title: "Sharodo Gan",
+    singer: "Dola Banerjee",
+    movie: "Agomoni",
+    youtube: "https://www.youtube.com/watch?v=fSQl9H-SmU"
+  }
 ];
 
-
 let current = 0;
-let playing = false;
+let player = null;
 
+/* YouTube video ID বের করবে */
+function getVideoId(url) {
+  try {
+    const u = new URL(url);
 
-/* CREATE PLAYLIST */
-function createPlaylist(){
+    if (u.hostname.includes("youtu.be")) {
+      return u.pathname.substring(1);
+    }
 
-  const list = document.getElementById("songList");
+    return u.searchParams.get("v");
+  } catch(e) {
+    return null;
+  }
+}
+
+/* Playlist দেখাবে */
+function renderPlaylist() {
+
+  const list = document.getElementById("songs");
+
+  if (!list) return;
 
   list.innerHTML = "";
 
-  songs.forEach((song,index)=>{
+  songs.forEach((song, index) => {
 
     const div = document.createElement("div");
 
-    div.className = "song";
+    div.className =
+      "song" + (index === current ? " active" : "");
 
     div.innerHTML = `
-      <div class="num">
-        ${String(index+1).padStart(2,"0")}
+      <span class="num">${String(index + 1).padStart(2,"0")}</span>
+
+      <div class="song-info">
+        <b>${song.title}</b>
+        <small>${song.singer} • ${song.movie}</small>
       </div>
 
-      <div>
-        <div class="song-title">
-          ${song[0]}
-        </div>
-
-        <div class="artist">
-          ${song[1]}
-        </div>
-      </div>
+      <button onclick="selectSong(${index})">
+        ▶
+      </button>
     `;
 
-    div.onclick = function(){
-      playSong(index);
-    };
-
     list.appendChild(div);
-
   });
-
 }
 
+/* YouTube player তৈরি */
+function onYouTubeIframeAPIReady() {
 
-/* PLAY SONG */
-function playSong(index){
+  player = new YT.Player("player", {
+
+    height: "100%",
+    width: "100%",
+
+    videoId: getVideoId(songs[current].youtube),
+
+    playerVars: {
+      autoplay: 0,
+      controls: 1,
+      rel: 0,
+      modestbranding: 1,
+      playsinline: 1
+    },
+
+    events: {
+      onReady: function() {
+        updateSongInfo();
+      },
+
+      onStateChange: function(event) {
+
+        /* গান শেষ হলে পরের গান */
+        if (event.data === YT.PlayerState.ENDED) {
+          nextSong();
+        }
+      }
+    }
+  });
+
+  renderPlaylist();
+}
+
+/* গান select */
+function selectSong(index) {
 
   current = index;
 
-  const song = songs[current];
+  const videoId = getVideoId(songs[current].youtube);
 
-  document.getElementById("nowTitle").textContent = song[0];
+  if (!videoId || !player) return;
 
-  document.getElementById("nowArtist").textContent = song[1];
+  player.loadVideoById(videoId);
 
-  /*
-    YouTube embed URL
-    autoplay=1 means user pressing Play will start it.
-  */
+  updateSongInfo();
+  renderPlaylist();
 
-  const url =
-    "https://www.youtube.com/embed/" +
-    song[2] +
-    "?autoplay=1&enablejsapi=1&playsinline=1";
-
-  document.getElementById("youtubeFrame").src = url;
-
-  playing = true;
-
-  document.getElementById("playButton").textContent = "⏸";
-
+  window.scrollTo({
+    top: document.body.scrollHeight,
+    behavior: "smooth"
+  });
 }
 
+/* পরের গান */
+function nextSong() {
 
-/* PLAY / PAUSE */
-function togglePlay(){
-
-  const frame = document.getElementById("youtubeFrame");
-
-  if(!frame.src){
-
-    playSong(current);
-
-    return;
+  if (current < songs.length - 1) {
+    current++;
+  } else {
+    current = 0;
   }
+
+  selectSong(current);
+}
+
+/* আগের গান */
+function prevSong() {
+
+  if (current > 0) {
+    current--;
+  } else {
+    current = songs.length - 1;
+  }
+
+  selectSong(current);
+}
+
+/* গানটির নাম দেখাবে */
+function updateSongInfo() {
+
+  const title = document.getElementById("ytTitle");
+  const artist = document.getElementById("artist");
+
+  if (title) {
+    title.textContent = songs[current].title;
+  }
+
+  if (artist) {
+    artist.textContent =
+      songs[current].singer + " • " + songs[current].movie;
+  }
+}
+
+/* Play current */
+function playCurrent() {
+
+  if (player) {
+    player.playVideo();
+  }
+}
+
+/* Stop */
+function stopCurrent() {
+
+  if (player) {
+    player.stopVideo();
+  }
+}
+
+renderPlaylist();
+</script>
+
 
   /*
     Reloading with autoplay toggles it back to playing.
     This keeps the player simple and reliable on mobile.
   */
 
-  if(!playing){
-
-    const song = songs[current];
-
-    frame.src =
-      "https://www.youtube.com/embed/" +
-      song[2] +
-      "?autoplay=1&enablejsapi=1&playsinline=1";
-
-    playing = true;
-
-    document.getElementById("playButton").textContent = "⏸";
-
-  }else{
+  
 
     /*
       Pause using YouTube iframe API command.
     */
 
-    frame.contentWindow.postMessage(
-      JSON.stringify({
-        event:"command",
-        func:"pauseVideo",
-        args:[]
-      }),
-      "*"
-    );
-
-    playing = false;
-
-    document.getElementById("playButton").textContent = "▶";
-
-  }
-
-}
-
-
-/* NEXT */
-function nextSong(){
-
-  current++;
-
-  if(current >= songs.length){
-    current = 0;
-  }
-
-  playSong(current);
-
-}
-
-
-/* PREVIOUS */
-function previousSong(){
-
-  current--;
-
-  if(current < 0){
-    current = songs.length - 1;
-  }
-
-  playSong(current);
-
-}
-
-
-/* VOLUME */
-function setVolume(value){
-
-  const frame = document.getElementById("youtubeFrame");
-
-  frame.contentWindow.postMessage(
-    JSON.stringify({
-      event:"command",
-      func:"setVolume",
-      args:[Number(value)]
-    }),
-    "*"
-  );
-
-}
-
-
-/* SCROLL */
-function scrollToPlaylist(){
-
-  document.getElementById("playlist")
-    .scrollIntoView({
-      behavior:"smooth"
-    });
-
-}
-
-function scrollToTop(){
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* START */
-createPlaylist();
-
-</script>
-
-</body>
-</html>
+    (
+      
